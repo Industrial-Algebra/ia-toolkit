@@ -1,0 +1,38 @@
+{
+  "name": "ia-toolkit",
+  "version": "0.1.0",
+  "description": "Skills, extensions, and themes for the Industrial Algebra Rust ecosystem",
+  "keywords": [
+    "pi-package"
+  ],
+  "license": "MIT",
+  "author": "Industrial Algebra",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Industrial-Algebra/ia-toolkit.git"
+  },
+  "files": [
+    "skills/",
+    "extensions/",
+    "themes/",
+    "LICENSE",
+    "README.md"
+  ],
+  "pi": {
+    "skills": [
+      "skills"
+    ],
+    "extensions": [
+      "extensions"
+    ],
+    "themes": [
+      "themes"
+    ]
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-ai": "*",
+    "@mariozechner/pi-coding-agent": "*",
+    "@mariozechner/pi-tui": "*",
+    "@sinclair/typebox": "*"
+  }
+}
