@@ -26,6 +26,7 @@ Pi package with skills, extensions, and themes for the [Industrial Algebra](http
 |---|---|
 | `ia-mdbook` | Scaffold deployable mdBook with IA Navy theme and Netlify config |
 | `ia-mcp-manifest` | Generate and validate TOML manifests for IA-MCP / amari-mcp servers |
+| `ia-website` | Integrate with industrialalgebra.com — release announcements, content publishing, design system |
 
 ## Install
 
