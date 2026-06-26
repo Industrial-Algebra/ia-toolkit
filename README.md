@@ -8,7 +8,6 @@ Pi package with skills, extensions, and themes for the [Industrial Algebra](http
 
 | Skill | Description |
 |---|---|
-| `ia-coding-standards` | Coding conventions for IA Rust crates — TDD, phantom types, feature gates, error types, docs, Gitflow |
 | `ia-workspace-new-crate` | Scaffold a new sub-crate inside an IA workspace with correct boilerplate |
 | `ia-clippy-hammer` | Systematic zero-warning clippy fix across all feature combinations |
 
@@ -16,9 +15,10 @@ Pi package with skills, extensions, and themes for the [Industrial Algebra](http
 
 | Skill | Description |
 |---|---|
-| `ia-release-polish` | Release checklist for IA crates — Cargo.toml, CI, docs, mdBook, examples, security |
 | `ia-version-bump` | Coordinate version bumps across multi-crate workspaces |
 | `ia-ecosystem-audit` | Audit a crate against IA coding standards — produces pass/fail report |
+
+> **Note:** `ia-coding-standards` and `ia-release-polish` are available via [pi-superpowers](https://github.com/coctostan/pi-superpowers).
 
 ### Documentation & Tooling
 
