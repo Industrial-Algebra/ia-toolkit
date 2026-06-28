@@ -95,7 +95,7 @@ std = []
 
 ```rust
 // Copyright (C) 2026 Industrial Algebra
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: Apache-2.0
 
 //! # Crate Title
 //!
@@ -150,7 +150,7 @@ Brief one-liner description.
 
 ## License
 
-AGPL-3.0-only. See [LICENSE](../LICENSE) for details.
+Apache-2.0. See [LICENSE](../LICENSE) for details.
 Commercial licensing available — contact Industrial Algebra.
 ```
 

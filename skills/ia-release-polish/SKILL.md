@@ -34,10 +34,10 @@ Git Workflow section in that skill — IA gitflow is non-negotiable.
 □ Nightly toolchain with rustfmt + clippy components
   rust-toolchain.toml: channel = "nightly", components = ["rustfmt", "clippy"]
 
-□ License: AGPL-3.0-only (valid SPDX — NOT "AGPL3.0 OR Commercial")
-  Dual-licensing info goes in README and LICENSE-COMMERCIAL, not the Cargo.toml field
+□ License: Apache-2.0 (valid SPDX)
+  CLA referenced in CONTRIBUTING; no LICENSE-COMMERCIAL needed
 
-□ LICENSE-COMMERCIAL file exists alongside LICENSE
+□ CLA at github.com/Industrial-Algebra/.github/blob/main/CLA.md referenced from CONTRIBUTING
 
 □ All optional deps gated behind features in [features]
   Each feature = ["dep:crate-name"] or similar
@@ -100,7 +100,7 @@ Copy the theme from Orlando's `book/theme/` directory. Do not invent new styles.
 □ Quick start code block (copy-paste runnable)
 □ Documentation section linking to guides, API, mdBook
 □ Feature flags table
-□ License section (AGPL-3.0 + commercial)
+□ License section (Apache-2.0 + CLA)
 □ Badges (crates.io, docs, CI status)
 □ What it IS vs what it is NOT
 ```
@@ -170,7 +170,7 @@ Frame as an honest record, not a marketing document.
 | Mistake | Fix |
 |---|---|
 | Path deps in Cargo.toml | Replace with `version = "X.Y"` |
-| License "AGPL3.0 OR Commercial" | Use `AGPL-3.0-only` in Cargo.toml; dual-licensing in README |
+| License "Apache-2.0" | Use `Apache-2.0` in Cargo.toml; CLA in CONTRIBUTING |
 | Clippy only checked on default features | Run `cargo clippy --all-features -- -D warnings` |
 | Docs written but no deploy config | Add `netlify.toml` + `.github/workflows/docs.yml` |
 | HANDOFF.md left in repo | Delete it — it's internal agent context |

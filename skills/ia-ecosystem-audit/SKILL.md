@@ -131,7 +131,7 @@ rg "pub fn " src/ --type rust -A10 | rg -c "# Examples"
 ```
 □ Every .rs file starts with license header:
   // Copyright (C) 2026 Industrial Algebra
-  // SPDX-License-Identifier: AGPL-3.0-only
+  // SPDX-License-Identifier: Apache-2.0
 ```
 
 Check method:
