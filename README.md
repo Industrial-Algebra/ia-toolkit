@@ -28,6 +28,12 @@ Pi package with skills, extensions, and themes for the [Industrial Algebra](http
 | `ia-mcp-manifest` | Generate and validate TOML manifests for IA-MCP / amari-mcp servers |
 | `ia-website` | Integrate with industrialalgebra.com — release announcements, content publishing, design system |
 
+### Infrastructure
+
+| Skill | Description |
+|---|---|
+| `ia-forgejo-mirror` | Set up dual-push mirroring from GitHub to the IA private Forgejo (king-ghidorah) — the working HTTPS+token recipe (SSH key auth fails here), credential store, repo creation via API, and `origin` dual-push wiring |
+
 ### Media Production
 
 Provision a workstation for AI-driven media production (Comfy Cloud + local ComfyUI, Blender, DaVinci Resolve Studio). The setup skill installs the comfy & blender skill packs from upstream and registers the provider MCP servers — the lean path that keeps ia-toolkit free of vendored third-party content.
