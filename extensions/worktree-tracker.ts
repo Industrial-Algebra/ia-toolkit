@@ -158,7 +158,7 @@ function formatRepoLine(r: RepoState, thm: any): string {
   }
 
   // Repo name
-  parts.push(thm.fg("primary", r.name.padEnd(16)));
+  parts.push(thm.fg("text", r.name.padEnd(16)));
 
   // Branch
   const branchStr = r.branch.length > 14 ? r.branch.slice(0, 13) + "…" : r.branch;
