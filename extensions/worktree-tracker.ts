@@ -218,11 +218,10 @@ export default function (pi: ExtensionAPI) {
   }
 
   function updateWidget(ctx: ExtensionContext) {
-    const thm = ctx.ui.theme;
     ctx.ui.setWidget(
       "worktrees",
-      (_tui, _theme) => {
-        return formatOverview(repos, thm, 120);
+      (_tui, theme) => {
+        return formatOverview(repos, theme, 120);
       },
       { placement: "belowEditor" },
     );
@@ -238,11 +237,9 @@ export default function (pi: ExtensionAPI) {
       await refresh(ctx);
 
       // Show full list in a custom overlay
-      const thm = ctx.ui.theme;
-      const lines = formatOverview(repos, thm, 100);
-
       const handle = ctx.ui.custom({
         render(width: number): string[] {
+          const thm = ctx.ui.theme;
           const header = thm.bold("  Industrial Algebra — Worktrees & Branches");
           const subheader = thm.fg("dim", `  ${ROOT}`);
           const footer = thm.fg("muted", "  * = dirty  Ⓦ = worktree  ⏳ = stale (>7d)  ↓behind  ↑ahead  [Enter] to dismiss");
@@ -270,6 +267,15 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
+  // ── Session shutdown: clear widget to prevent stale refs on /reload ──
+
+  pi.on("session_shutdown", async (_event, ctx) => {
+    if (ctx.hasUI) {
+      ctx.ui.setWidget("worktrees", undefined);
+      ctx.ui.setStatus("worktrees", undefined);
+    }
+  });
+
   // ── Session start: initial scan + set up widget ──────────────────
 
   pi.on("session_start", async (_event, ctx) => {
@@ -287,9 +293,11 @@ export default function (pi: ExtensionAPI) {
     }
   });
 
-  // ── Reload / resume: refresh ─────────────────────────────────────
+  // ── Reload: clear old widget first, then refresh ─────────────────
 
   pi.on("resources_discover", async (_event, ctx) => {
-    if (ctx.hasUI) await refresh(ctx);
+    if (!ctx.hasUI) return;
+    ctx.ui.setWidget("worktrees", undefined);
+    await refresh(ctx);
   });
 }
