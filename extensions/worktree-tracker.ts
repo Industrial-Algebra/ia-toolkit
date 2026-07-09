@@ -208,22 +208,48 @@ export default function (pi: ExtensionAPI) {
     scanning = true;
     try {
       repos = await scanRepos(pi);
-      // Update widget if we have UI
       if (ctx.hasUI) {
-        updateWidget(ctx);
+        updateStatusBar(ctx);
       }
     } finally {
       scanning = false;
     }
   }
 
-  function updateWidget(ctx: ExtensionContext) {
-    // Use plain string array (safe), not factory function (crashes on some versions)
+  function updateStatusBar(ctx: ExtensionContext) {
     const theme = ctx.ui.theme;
-    const lines = formatOverview(repos, theme, 120);
-    ctx.ui.setWidget("worktrees", lines.length > 0 ? lines : undefined, {
-      placement: "belowEditor",
+    const cwd = ctx.cwd;
+
+    // Find the repo matching the current working directory
+    const currentRepo = repos.find((r) => {
+      const repoPath = path.join(ROOT, r.name);
+      return cwd.startsWith(repoPath);
     });
+
+    if (currentRepo) {
+      const parts: string[] = [];
+      parts.push(theme.fg("dim", currentRepo.name));
+      if (currentRepo.worktree) parts.push(theme.fg("accent", "Ⓦ"));
+      parts.push(theme.fg("text", currentRepo.branch));
+      if (currentRepo.dirty) parts.push(theme.fg("warning", "*"));
+      if (currentRepo.ahead !== null && currentRepo.ahead > 0)
+        parts.push(theme.fg("accent", `↑${currentRepo.ahead}`));
+      if (currentRepo.behind !== null && currentRepo.behind > 0)
+        parts.push(theme.fg("warning", `↓${currentRepo.behind}`));
+
+      ctx.ui.setStatus("worktrees", parts.join(" "));
+    } else {
+      // Outside known repos — show total dirty count if any
+      const dirtyCount = repos.filter((r) => r.dirty).length;
+      if (dirtyCount > 0) {
+        ctx.ui.setStatus(
+          "worktrees",
+          theme.fg("warning", `⚠ ${dirtyCount} dirty repos — /worktrees`),
+        );
+      } else {
+        ctx.ui.setStatus("worktrees", undefined);
+      }
+    }
   }
 
   // ── Register command ────────────────────────────────────────────
@@ -266,37 +292,25 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
-  // ── Session shutdown: clear widget to prevent stale refs on /reload ──
+  // ── Session shutdown: clear status to prevent stale refs ──
 
   pi.on("session_shutdown", async (_event, ctx) => {
     if (ctx.hasUI) {
-      ctx.ui.setWidget("worktrees", undefined);
       ctx.ui.setStatus("worktrees", undefined);
     }
   });
 
-  // ── Session start: initial scan + set up widget ──────────────────
+  // ── Session start: initial scan + status bar ─────────────────────
 
   pi.on("session_start", async (_event, ctx) => {
     if (!ctx.hasUI) return;
     await refresh(ctx);
-
-    // Show a compact summary in the status bar
-    const dirtyCount = repos.filter((r) => r.dirty).length;
-    const thm = ctx.ui.theme;
-    if (dirtyCount > 0) {
-      ctx.ui.setStatus(
-        "worktrees",
-        thm.fg("warning", `⚠ ${dirtyCount} dirty repos — /worktrees for details`),
-      );
-    }
   });
 
-  // ── Reload: clear old widget first, then refresh ─────────────────
+  // ── Reload: refresh status ───────────────────────────────────────
 
   pi.on("resources_discover", async (_event, ctx) => {
     if (!ctx.hasUI) return;
-    ctx.ui.setWidget("worktrees", undefined);
     await refresh(ctx);
   });
 }
