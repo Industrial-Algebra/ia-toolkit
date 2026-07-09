@@ -218,13 +218,12 @@ export default function (pi: ExtensionAPI) {
   }
 
   function updateWidget(ctx: ExtensionContext) {
-    ctx.ui.setWidget(
-      "worktrees",
-      (_tui, theme) => {
-        return formatOverview(repos, theme, 120);
-      },
-      { placement: "belowEditor" },
-    );
+    // Use plain string array (safe), not factory function (crashes on some versions)
+    const theme = ctx.ui.theme;
+    const lines = formatOverview(repos, theme, 120);
+    ctx.ui.setWidget("worktrees", lines.length > 0 ? lines : undefined, {
+      placement: "belowEditor",
+    });
   }
 
   // ── Register command ────────────────────────────────────────────
