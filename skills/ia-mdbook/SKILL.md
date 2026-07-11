@@ -1,6 +1,6 @@
 ---
 name: ia-mdbook
-description: Scaffold a deployable mdBook for an Industrial Algebra Rust crate with the IA Navy theme, standard chapter structure, and Netlify deploy config. Use when setting up documentation for an IA crate, or when the release polish checklist demands a deployable book.
+description: Scaffold a deployable mdBook for an Industrial Algebra Rust crate: IA Navy theme, standard chapter structure, and Netlify deploy config. Use when setting up hosted docs for an IA crate, when release polish demands a deployable book, or when a crates.io publish needs documentation. Triggers: mdbook, mdBook, book, documentation site, deploy docs, hosted docs, netlify, navy theme, SUMMARY.md, book.toml, release docs, book theme, online docs.
 ---
 
 # IA mdBook

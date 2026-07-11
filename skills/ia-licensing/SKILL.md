@@ -1,6 +1,6 @@
 ---
 name: ia-licensing
-description: Industrial Algebra's licensing model. Use when creating a new IA crate, choosing a license, writing CONTRIBUTING/CLA references, or when a skill or doc references the IA license. The IA ecosystem standard is Apache-2.0 + CLA. Hardware and strategic repos (Kagome, and future repos designated by Justin) retain AGPL-3.0-only. Do NOT relicense AGPL repos without explicit direction.
+description: Industrial Algebra's licensing model: Apache-2.0 + CLA is the ecosystem standard; hardware/strategic repos (Kagome, and repos designated by Justin) retain AGPL-3.0-only. Use when creating a new IA crate, choosing/writing a license, setting up CONTRIBUTING/CLA, fixing the license field for crates.io publish, or when a skill/doc references the IA license. Do NOT relicense AGPL repos without explicit direction. Triggers: license, licensing, Apache-2.0, Apache, AGPL, CLA, CONTRIBUTING, crates.io license field, SPDX, make repo public, dual license, commercial license.
 ---
 
 # IA Licensing

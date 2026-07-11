@@ -1,6 +1,6 @@
 ---
 name: ia-release-polish
-description: Use when preparing an existing Industrial Algebra Rust crate for public release — polishing for crates.io, making a repo public, or reaching v0.1.0 readiness. NOT for writing code.
+description: Prepare an Industrial Algebra Rust crate for actual release — making the repo public, crates.io publish, and git tag. SHIPPED = published to crates.io + tagged; merged/feature-complete/CI-green is NOT shipped, so never call a crate "shipped/released/v0.1.0" until `cargo publish` succeeds and the tag exists. Use for release polish, making a repo public, preparing to publish/ship, cutting a release, v0.1.0/1.0 readiness, pre-release checklists, CHANGELOG/release notes. NOT for writing feature code. Triggers: release polish, ship, shipped, publish, crates.io, make public, cut a release, tag a release, release-ready, pre-release, changelog, release notes, v0.1.0, version 1.0, is it ready to ship, definition of done, go public.
 ---
 
 # IA Release Polish
@@ -9,6 +9,28 @@ description: Use when preparing an existing Industrial Algebra Rust crate for pu
 
 Bring an Industrial Algebra Rust crate to Schubert-level release quality. Covers every
 non-obvious step that separates a working crate from a polished public product.
+
+## Definition of Shipped (non-negotiable)
+
+**A crate is "shipped" ONLY when it is published to crates.io AND a version
+tag exists in git.** None of the following, alone or together, constitute
+"shipped": merged to `develop` or `main`, "feature-complete", CI green,
+CHANGELOG written, version bumped, docs deployed, or the agent claiming so.
+
+Treat the crate as unreleased until **all three** hold:
+
+1. The repo is **public**. IA keeps repos private during ideation/initial
+   development to avoid unclear public signals; going public is a deliberate
+   ship step, not the default.
+2. `cargo publish` **succeeds** for every publishable crate in the workspace
+   (verify on crates.io, not just locally).
+3. The version **tag** (e.g. `v0.1.0`) is pushed.
+
+Until then, use "unreleased / in development / merged to develop" language
+in the CHANGELOG (`[Unreleased]`), README status, ROADMAP, and any agent
+claim. Do **not** write `[0.1.0] — <date>` or "v0.1.0" until the publish +
+tag are real. The release-polish work below *prepares* the gate; it does
+not cross it.
 
 **REQUIRED BACKGROUND:** For the code quality standards underlying this checklist,
 see `/skill:ia-coding-standards`. For the branching and PR workflow, see the

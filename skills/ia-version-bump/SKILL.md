@@ -1,6 +1,6 @@
 ---
 name: ia-version-bump
-description: Coordinate version bumps across a multi-crate Industrial Algebra Rust workspace. Updates workspace package version, internal dependency versions, and starts a new CHANGELOG section. Use when preparing a release, bumping after a release, or updating dependency versions across an IA workspace like amari, karpal, or cliffy.
+description: Coordinate version bumps across a multi-crate Industrial Algebra Rust workspace: workspace package version, internal dependency versions, and a new CHANGELOG section. A version bump alone is NOT a release — 'shipped' still requires crates.io publish + tag (see ia-release-polish). Use when preparing a release, bumping after a release, or updating dependency versions across an IA workspace (amari, karpal, cliffy, Ijima). Triggers: version bump, bump version, release prep, post-release bump, workspace version, internal dependency version, changelog section, 0.1.0, minor bump, major bump, patch bump, cargo workspace version.
 ---
 
 # IA Version Bump
